@@ -1,0 +1,14 @@
+/Users/ayatfarhat/UniversitySystem/bin/Debug/net10.0/UniversitySystem
+/Users/ayatfarhat/UniversitySystem/bin/Debug/net10.0/UniversitySystem.deps.json
+/Users/ayatfarhat/UniversitySystem/bin/Debug/net10.0/UniversitySystem.runtimeconfig.json
+/Users/ayatfarhat/UniversitySystem/bin/Debug/net10.0/UniversitySystem.dll
+/Users/ayatfarhat/UniversitySystem/bin/Debug/net10.0/UniversitySystem.pdb
+/Users/ayatfarhat/UniversitySystem/obj/Debug/net10.0/UniversitySystem.GeneratedMSBuildEditorConfig.editorconfig
+/Users/ayatfarhat/UniversitySystem/obj/Debug/net10.0/UniversitySystem.AssemblyInfoInputs.cache
+/Users/ayatfarhat/UniversitySystem/obj/Debug/net10.0/UniversitySystem.AssemblyInfo.cs
+/Users/ayatfarhat/UniversitySystem/obj/Debug/net10.0/UniversitySystem.csproj.CoreCompileInputs.cache
+/Users/ayatfarhat/UniversitySystem/obj/Debug/net10.0/UniversitySystem.dll
+/Users/ayatfarhat/UniversitySystem/obj/Debug/net10.0/refint/UniversitySystem.dll
+/Users/ayatfarhat/UniversitySystem/obj/Debug/net10.0/UniversitySystem.pdb
+/Users/ayatfarhat/UniversitySystem/obj/Debug/net10.0/UniversitySystem.genruntimeconfig.cache
+/Users/ayatfarhat/UniversitySystem/obj/Debug/net10.0/ref/UniversitySystem.dll
