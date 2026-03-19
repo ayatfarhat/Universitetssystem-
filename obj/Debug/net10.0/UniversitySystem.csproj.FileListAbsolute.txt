@@ -12,3 +12,4 @@
 /Users/ayatfarhat/UniversitySystem/obj/Debug/net10.0/UniversitySystem.pdb
 /Users/ayatfarhat/UniversitySystem/obj/Debug/net10.0/UniversitySystem.genruntimeconfig.cache
 /Users/ayatfarhat/UniversitySystem/obj/Debug/net10.0/ref/UniversitySystem.dll
+/Users/ayatfarhat/UniversitySystem/obj/Debug/net10.0/UniversitySystem.sourcelink.json

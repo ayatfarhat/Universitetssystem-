@@ -1,23 +1,25 @@
 ﻿using UniversitySystem.Models;
 using UniversitySystem.Services;
-// Main menu for the university system console application
-// Handles user interaction and calls the service layer
+
+// Hovedprogrammet starter her
 class Program
 {
     static void Main()
     {
+        // Lager et nytt system (her ligger all logikken)
         UniversityService service = new UniversityService();
 
-        // Startdata
-        service.AddStudent(new Student("S001", "Ayat", "ayat@uia.no"));
-        service.AddStudent(new Student("S002", "Ali", "ali@uia.no"));
-        service.AddEmployee(new Employee("E001", "Per Hansen", "per@uia.no", "Bibliotekar", "Bibliotek"));
+        // Legger inn testdata slik at vi slipper å opprette alt manuelt
+        service.AddStudent(new Student("S1", "Ola", "ola@mail.com"));
+        service.AddStudent(new Student("S2", "Kari", "kari@mail.com"));
+        service.AddEmployee(new Employee("E1", "Per", "per@mail.com", "Foreleser", "IT"));
 
         bool running = true;
 
+        // Løkke som kjører menyen helt til brukeren avslutter
         while (running)
         {
-            Console.WriteLine("\n===== Universitetssystem =====");
+            Console.WriteLine("\n--- MENY ---");
             Console.WriteLine("[1] Opprett kurs");
             Console.WriteLine("[2] Meld student til kurs");
             Console.WriteLine("[3] Print kurs og deltagere");
@@ -30,10 +32,11 @@ class Program
             Console.WriteLine("[10] Vis aktive lån");
             Console.WriteLine("[11] Vis lånehistorikk");
             Console.WriteLine("[0] Avslutt");
-            Console.Write("Velg: ");
 
+            Console.Write("Velg: ");
             string choice = Console.ReadLine()!;
 
+            // Switch brukes for å håndtere menyvalg
             switch (choice)
             {
                 case "1":
@@ -42,12 +45,10 @@ class Program
 
                 case "2":
                     Console.Write("StudentID: ");
-                    string studentId = Console.ReadLine()!;
-
+                    string sid = Console.ReadLine()!;
                     Console.Write("Kurskode: ");
-                    string courseCode = Console.ReadLine()!;
-
-                    service.EnrollStudentInCourse(studentId, courseCode);
+                    string code = Console.ReadLine()!;
+                    service.EnrollStudentInCourse(sid, code);
                     break;
 
                 case "3":
@@ -55,38 +56,31 @@ class Program
                     break;
 
                 case "4":
-                    Console.Write("Søk etter kurskode eller kursnavn: ");
-                    string courseSearch = Console.ReadLine()!;
-                    service.SearchCourse(courseSearch);
+                    Console.Write("Søk: ");
+                    service.SearchCourse(Console.ReadLine()!);
                     break;
 
                 case "5":
-                    Console.Write("Søk etter boktittel eller forfatter: ");
-                    string bookSearch = Console.ReadLine()!;
-                    service.SearchBook(bookSearch);
+                    Console.Write("Søk: ");
+                    service.SearchBook(Console.ReadLine()!);
                     break;
 
                 case "6":
                     Console.Write("Bok-ID: ");
-                    string borrowBookId = Console.ReadLine()!;
-
-                    Console.Write("Låner-type (student/employee): ");
-                    string borrowerType = Console.ReadLine()!;
-
-                    Console.Write("Låner-ID: ");
-                    string borrowerId = Console.ReadLine()!;
-
-                    service.BorrowBook(borrowBookId, borrowerType, borrowerId);
+                    string bookId = Console.ReadLine()!;
+                    Console.Write("Type (student/employee): ");
+                    string type = Console.ReadLine()!;
+                    Console.Write("ID: ");
+                    string id = Console.ReadLine()!;
+                    service.BorrowBook(bookId, type, id);
                     break;
 
                 case "7":
                     Console.Write("Bok-ID: ");
-                    string returnBookId = Console.ReadLine()!;
-
-                    Console.Write("Navn på låner: ");
-                    string borrowerName = Console.ReadLine()!;
-
-                    service.ReturnBook(returnBookId, borrowerName);
+                    string bid = Console.ReadLine()!;
+                    Console.Write("Navn: ");
+                    string name = Console.ReadLine()!;
+                    service.ReturnBook(bid, name);
                     break;
 
                 case "8":
@@ -95,12 +89,10 @@ class Program
 
                 case "9":
                     Console.Write("StudentID: ");
-                    string removeStudentId = Console.ReadLine()!;
-
+                    string s = Console.ReadLine()!;
                     Console.Write("Kurskode: ");
-                    string removeCourseCode = Console.ReadLine()!;
-
-                    service.UnenrollStudentFromCourse(removeStudentId, removeCourseCode);
+                    string c = Console.ReadLine()!;
+                    service.UnenrollStudentFromCourse(s, c);
                     break;
 
                 case "10":
@@ -113,11 +105,6 @@ class Program
 
                 case "0":
                     running = false;
-                    Console.WriteLine("Programmet avsluttes.");
-                    break;
-
-                default:
-                    Console.WriteLine("Ugyldig valg. Prøv igjen.");
                     break;
             }
         }
