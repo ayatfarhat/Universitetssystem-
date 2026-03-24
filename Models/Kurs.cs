@@ -16,6 +16,14 @@ public class Course
     // Maks antall studenter som kan melde seg på kurset
     public int MaxStudents { get; set; }
 
+    // Pensum for kurset
+    // Dette brukes når faglærer registrerer pensum
+    public string Curriculum { get; set; }
+
+    // Ansatt som underviser kurset
+    // Denne brukes for å knytte et kurs til en faglærer
+    public Employee? Teacher { get; set; }
+
     // Liste over studenter som er meldt på kurset
     public List<Student> Participants { get; set; }
 
@@ -27,6 +35,9 @@ public class Course
         Name = name;
         Credits = credits;
         MaxStudents = maxStudents;
+
+        // Setter tom tekst som standard pensum
+        Curriculum = "";
 
         // Lager en tom liste som skal inneholde studentene
         Participants = new List<Student>();
@@ -42,7 +53,12 @@ public class Course
     // Metode som returnerer informasjon om kurset som tekst
     public string GetInfo()
     {
-        // Viser kurskode, navn, studiepoeng og hvor mange studenter som er påmeldt
-        return $"{Code} - {Name}, {Credits} studiepoeng, {Participants.Count}/{MaxStudents} studenter";
+        // Lager tekst for lærer hvis lærer finnes
+        string teacherInfo = Teacher != null ? Teacher.Navn : "Ingen faglærer registrert";
+
+        // Viser kurskode, navn, studiepoeng, lærer og antall studenter
+        return $"{Code} - {Name}, {Credits} studiepoeng, " +
+               $"Faglærer: {teacherInfo}, " +
+               $"{Participants.Count}/{MaxStudents} studenter";
     }
 }

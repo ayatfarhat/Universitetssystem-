@@ -1,35 +1,37 @@
-// Definerer hvilket namespace (mappe/område) klassen tilhører
+// Namespace organiserer klassen i Models-mappen
 namespace UniversitySystem.Models;
 
-// Employee-klassen arver fra User-klassen
-// Det betyr at den får med seg egenskaper som Name og Email fra User
-public class Employee : User
+// Employee-klassen arver fra Bruker
+// Det betyr at den automatisk får:
+// Id, Navn, Epost, Brukernavn, Passord
+public class Employee : Bruker
 {
-    // Egenskap for ansattens ID
-    public string EmployeeID { get; set; }
-
-    // Egenskap for stilling (f.eks. foreleser, bibliotekar)
+    // Stilling beskriver rollen til den ansatte
+    // Eksempel: Faglærer eller Bibliotekar
     public string Position { get; set; }
 
-    // Egenskap for hvilken avdeling personen jobber i
+    // Avdeling den ansatte jobber i
     public string Department { get; set; }
 
-    // Konstruktør - brukes når vi oppretter et nytt Employee-objekt
-    // Tar inn verdier og sender name og email til baseklassen (User)
-    public Employee(string employeeID, string name, string email, string position, string department)
-        : base(name, email) // kaller konstruktøren i User
+    // Liste over kurs den ansatte underviser i
+    // Brukes hvis Position = "Faglærer"
+    public List<Course> UnderviserIKurs { get; set; } = new();
+
+    // Konstruktør
+    // Denne kjøres når vi oppretter en ny ansatt
+    public Employee(string id, string navn, string epost,
+                    string brukernavn, string passord,
+                    string position, string department)
+        : base(id, navn, epost, brukernavn, passord)
     {
-        // Setter verdier på egenskapene
-        EmployeeID = employeeID;
         Position = position;
         Department = department;
     }
 
-    // Override betyr at vi overskriver en metode fra baseklassen (User)
-    // Denne metoden gir en tekstbeskrivelse av objektet
+    // Override betyr at vi overskriver metoden fra Bruker-klassen
+    // Gir mer spesifikk informasjon om ansatte
     public override string GetInfo()
     {
-        // Returnerer en streng med info om den ansatte
-        return $"Ansatt {Name} ({EmployeeID}) - {Email}, Stilling: {Position}, Avdeling: {Department}";
+        return $"Ansatt: {Navn} ({Id}) - {Epost}, Stilling: {Position}, Avdeling: {Department}";
     }
 }

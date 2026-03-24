@@ -1,24 +1,31 @@
-// Definerer namespace (mappe/område)
+// Namespace organiserer klassen i Models-mappen
 namespace UniversitySystem.Models;
 
-// Student-klassen arver fra User
-// Det betyr at den får med seg Name og Email automatisk
-public class Student : User
+// Student-klassen arver fra Bruker
+// Det betyr at den automatisk får:
+// Id, Navn, Epost, Brukernavn, Passord
+public class Student : Bruker
 {
-    // Unik ID for studenten
-    public string StudentID { get; set; }
+    // Liste over kurs studenten er meldt på
+    // Brukes når studenten melder seg på eller av kurs
+    public List<Course> PåmeldteKurs { get; set; } = new();
 
-    // Konstruktør - brukes når vi oppretter en ny student
-    public Student(string studentID, string name, string email) : base(name, email)
+    // Dictionary brukes til å lagre karakterer
+    // Key = kurskode
+    // Value = karakter
+    public Dictionary<string, string> Karakterer { get; set; } = new();
+
+    // Konstruktør
+    // Denne kjøres når vi oppretter en ny student
+    public Student(string id, string navn, string epost, string brukernavn, string passord)
+        : base(id, navn, epost, brukernavn, passord)
     {
-        // Setter studentens ID
-        StudentID = studentID;
     }
 
-    // Override betyr at vi overskriver metoden GetInfo fra User
+    // Override betyr at vi overskriver metoden fra Bruker-klassen
+    // Vi lager en mer spesifikk versjon for Student
     public override string GetInfo()
     {
-        // Returnerer en tekst med informasjon om studenten
-        return $"Student {Name} ({StudentID}) - {Email}";
+        return $"Student: {Navn} ({Id}) - {Epost}";
     }
 }

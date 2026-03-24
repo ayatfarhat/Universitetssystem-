@@ -1,8 +1,10 @@
-// Definerer namespace (mappe/område)
+// Namespace organiserer klassen i Models-mappen
 namespace UniversitySystem.Models;
 
 // ExchangeStudent arver fra Student
-// Det betyr at den får med seg alt fra Student (og indirekte fra User)
+// Det betyr at den automatisk får:
+// Id, Navn, Epost, Brukernavn, Passord
+// PåmeldteKurs og Karakterer
 public class ExchangeStudent : Student
 {
     // Hjemuniversitetet til studenten
@@ -17,28 +19,33 @@ public class ExchangeStudent : Student
     // Sluttdato for utvekslingsperioden
     public string PeriodTo { get; set; }
 
-    // Konstruktør - brukes når vi oppretter en ny utvekslingsstudent
+    // Konstruktør
+    // Denne kjøres når vi oppretter en ny utvekslingsstudent
     public ExchangeStudent(
-        string studentID,
-        string name,
-        string email,
+        string id,
+        string navn,
+        string epost,
+        string brukernavn,
+        string passord,
         string homeUniversity,
         string country,
         string periodFrom,
         string periodTo
-    ) : base(studentID, name, email) // kaller konstruktøren til Student
+    )
+        : base(id, navn, epost, brukernavn, passord)
     {
-        // Setter verdier for egne egenskaper
         HomeUniversity = homeUniversity;
         Country = country;
         PeriodFrom = periodFrom;
         PeriodTo = periodTo;
     }
 
-    // Override betyr at vi overskriver GetInfo-metoden fra Student/User
+    // Override betyr at vi overskriver metoden fra Student
+    // Gir mer spesifikk informasjon om utvekslingsstudenten
     public override string GetInfo()
     {
-        // Returnerer detaljert informasjon om utvekslingsstudenten
-        return $"Utvekslingsstudent {Name} ({StudentID}) - {Email}, Hjemuniversitet: {HomeUniversity}, Land: {Country}, Periode: {PeriodFrom} til {PeriodTo}";
+        return $"Utvekslingsstudent: {Navn} ({Id}) - {Epost}, " +
+               $"Hjemuniversitet: {HomeUniversity}, Land: {Country}, " +
+               $"Periode: {PeriodFrom} til {PeriodTo}";
     }
 }

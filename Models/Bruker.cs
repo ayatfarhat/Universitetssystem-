@@ -1,28 +1,40 @@
-// Definerer namespace (mappe/område) for klassen
+// Namespace organiserer klassen i prosjektstrukturen
+// Andre klasser i Models-mappen kan bruke denne klassen
 namespace UniversitySystem.Models;
 
-// User er en baseklasse (forelderklasse)
-// Andre klasser som Student og Employee kan arve fra denne
-public class User
+// Bruker er en baseklasse (forelderklasse)
+// Student og Ansatt arver fra denne klassen
+public class Bruker
 {
-    // Navn på brukeren
-    public string Name { get; set; }
+    // Unik ID for brukeren (studentnummer eller ansattnummer)
+    public string Id { get; set; }
 
-    // E-post til brukeren
-    public string Email { get; set; }
+    // Navnet til brukeren
+    public string Navn { get; set; }
 
-    // Konstruktør - brukes når vi oppretter en ny bruker
-    public User(string name, string email)
+    // E-postadressen til brukeren
+    public string Epost { get; set; }
+
+    // Brukernavn brukes til innlogging
+    public string Brukernavn { get; set; }
+
+    // Passord brukes sammen med brukernavn ved innlogging
+    public string Passord { get; set; }
+
+    // Konstruktør (designer)
+    // Denne kjøres når vi oppretter et nytt Bruker-objekt
+    public Bruker(string id, string navn, string epost, string brukernavn, string passord)
     {
-        // Setter verdiene for navn og e-post
-        Name = name;
-        Email = email;
+        Id = id;
+        Navn = navn;
+        Epost = epost;
+        Brukernavn = brukernavn;
+        Passord = passord;
     }
 
-    // Virtual betyr at metoden kan overskrives (override) i klasser som arver fra User
+    // Virtual betyr at metoden kan overskrives i klasser som arver fra Bruker
     public virtual string GetInfo()
     {
-        // Returnerer en enkel tekst med informasjon om brukeren
-        return $"Bruker {Name} - {Email}";
+        return $"Bruker: {Navn} - {Epost}";
     }
 }
